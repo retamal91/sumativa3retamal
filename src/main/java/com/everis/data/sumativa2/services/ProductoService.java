@@ -3,6 +3,8 @@ package com.everis.data.sumativa2.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 
@@ -16,6 +18,14 @@ import com.everis.data.sumativa2.repositories.ProductoRepository;
 public class ProductoService {
 	@Autowired
 	ProductoRepository productoRepository;
+	
+	public Page<Producto> productosPaginados(int numeroPagina , int cantElementos){
+		
+		//obtener todos los productos y ordenarlos por nombre de forma ascendente
+		PageRequest pageRequest = PageRequest.of(numeroPagina, cantElementos);
+		
+		return productoRepository.findAll(pageRequest);
+	}
 	
 
 

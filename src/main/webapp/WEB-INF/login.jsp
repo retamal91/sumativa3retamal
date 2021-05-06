@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-        <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 <div>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/index">Pagina de Compra</a>
+  <a class="navbar-brand" href="#">Pagina de Compra</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -38,53 +39,44 @@
         <a class="nav-link" href="/carrito">Ver Carrito</a>
       </li>
 
-		
+	
     </ul>
 	</div>
 	</nav>
 	
   </div>
-
-
-<h1>Buscar Productos por categoria</h1>
-<form action="/producto/busqueda/buscar" method="POST">
-		<input type="text" placeholder="Ingresar categoria" id="busqueda" name="busqueda">
-		<button type="submit" class="btn btn-primary">Buscar</button>		
-		</form>
-		
-		<h2>Listado Productos con la categoria</h2>
-	<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Precio</th>
-
-
- 
- 
-    </tr>
-  </thead>
-  <tbody>
-
-  <c:forEach var = "producto" items="${listaProductos}"> 
-    <tr>
-		<td>${producto.id}</td>
-		<td>${producto.nombre}</td>
-		<td>${producto.descripcion}</td>
-		<td>${producto.precio}</td>
-		
-		</form>
-		
-		
-		</td>
-		
-         
- </tr>
-</c:forEach>
-
-  </tbody>
-</table>
+	<form action="/persona/login" method="post">
+			<label for="email">Email: </label>
+			<input type="text" name="email" id="email">
+			<br>
+			<label for="password">Password: </label>
+			<input type="text" name="password" id="password">
+			<br>
+			<input type="submit" value="Login">
+	</form>
+	
+	<!-- 
+	<form action="/login/guardar" method="post">
+			<label for="email">Email: </label>
+			<input type="text" name="email" id="email">
+			<br>
+			<label for="password">Password: </label>
+			<input type="text" name="password" id="password">
+			<br>
+			<input type="submit" value="guardar">
+	</form>
+	<br>
+	<form action="/login/login" method="post">
+			<label for="email">Email: </label>
+			<input type="text" name="email" id="email">
+			<br>
+			<label for="password">Password: </label>
+			<input type="text" name="password" id="password">
+			<br>
+			<input type="submit" value="Login">
+	</form>
+	 -->
+	<c:out value="${mensaje}"></c:out>
+	</div>
 </body>
 </html>

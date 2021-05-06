@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
     
 <!DOCTYPE html>
 <html>
@@ -46,72 +45,26 @@
 	</nav>
 	
   </div>
-
-
-	<div>
-	<h2>Crear Producto</h2>
-<form:form action="http://localhost:8080/producto/insertar" method="post" modelAttribute="producto">
-			<form:hidden path="id"/>
-			<form:label path="nombre">Nombre Producto: </form:label>
-			<form:input path="nombre" />
+	<div class="container col-lg-4">
+		
+		<form:form action="/persona/guardar" method="post" modelAttribute="persona">
+			<form:label path="nombre">Nombre: </form:label>
+			<form:input path="nombre" class="form-control mb-4"></form:input>
 			<br>
-			<form:label path="descripcion">Desc Producto: </form:label>
-			<form:input path="descripcion"  />
-				<br>
-			<form:label path="precio">Precio Producto: </form:label>
-			<form:input path="precio" />
+			<form:label path="apellido">Apellido: </form:label>
+			<form:input class="form-control mb-4" path="apellido"></form:input>
 			<br>
-			
-			<form:label path="categorias">Categoria: </form:label>
-			
-			<form:select path="categorias">
-				<option value="0">Seleccione categoria...</option>
-				<c:forEach var="categoria" items="${listadoCategorias}">
-					<option value="<c:out value="${categoria.id}"></c:out>"><c:out value="${categoria.nombre}"></c:out> </option>
-				</c:forEach>
-			</form:select>
-			<input type="submit" value="Crear">
+			<form:label path="email">Email: </form:label>
+			<form:input  class="form-control mb-4" path="email"></form:input>
+<br>
+			<form:label path="password">Password: </form:label>
+			<form:password  class="form-control mb-4" path="password"></form:password>
+<br>
+			<form:label path="passwordConfirmation">password Confirmation: </form:label>
+			<form:password  class="form-control mb-4" path="passwordConfirmation"></form:password>
+			<br>
+			<input type="submit" value="Registrar!">
 		</form:form>
-	<h2>Listado Productos</h2>
-	<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Precio</th>
-      <th scope="col">Categoria</th>
-       <th scope="col">Eliminar</th>
-       <th scope="col">Editar</th>
- 
- 
-    </tr>
-  </thead>
-  <tbody>
-
-  <c:forEach var = "producto" items="${listadoProductos.content}"> 
-    <tr>
-		<td>${producto.id}</td>
-		<td>${producto.nombre}</td>
-		<td>${producto.descripcion}</td>
-		<td>${producto.precio}</td>
-		<td>${producto.categorias[0].nombre}</td>
-		<td><a href="http://localhost:8080/producto/eliminar/${producto.id}"><button type="button"  class="btn btn-primary">Eliminar</button></a>
-		</td>
-		<td><form action="/producto/editar/${producto.id}">
-
-		<button type="submit" class="btn btn-primary">Editar</button>		
-		</form>
-		
-		
-		</td>
-		
-         
- </tr>
-</c:forEach>
-
-  </tbody>
-</table>
 	</div>
 </body>
 </html>
