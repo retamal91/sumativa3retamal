@@ -30,15 +30,17 @@ public class ProductoController {
 	@Autowired
 	CategoriaService categoriaService;
 	
-	@RequestMapping("")
-	public String inicio(Model model,
+	@RequestMapping("/{numeroPagina}")
+	public String inicio(@PathVariable("numeroPagina") int numeroPagina,Model model,
 			@ModelAttribute("producto")Producto prod ,
 			HttpSession session) {
 		Integer registrado = (Integer) session.getAttribute("registrado");
 		if(registrado==1) {
 		
-		Page<Producto> productos= productoService.productosPaginados(0, CANT_PRODUCTOS);
+		Page<Producto> productos= productoService.productosPaginados(numeroPagina-1, CANT_PRODUCTOS);
 		
+		int totalPagina= productos.getTotalPages();
+		model.addAttribute("totalPagina", totalPagina);
 		model.addAttribute("listadoProductos",productos);
 		model.addAttribute("listadoCategorias",categoriaService.findAll());
 		return "producto.jsp";
@@ -53,10 +55,14 @@ public class ProductoController {
 		Integer registrado = (Integer) session.getAttribute("registrado");
 		if(registrado==1) {
 		productoService.save(prod);
-		model.addAttribute("listadoProductos",productoService.findAll());
+		Page<Producto> productos= productoService.productosPaginados(0, CANT_PRODUCTOS);
+		
+		int totalPagina= productos.getTotalPages();
+		model.addAttribute("totalPagina", totalPagina);
+		model.addAttribute("listadoProductos",productos);
 		model.addAttribute("listadoCategorias",categoriaService.findAll());
 
-		return "redirect:";
+		return "redirect:/producto/1";
 		}else {
 			return "login.jsp";
 		}
@@ -69,9 +75,13 @@ public class ProductoController {
 		Integer registrado = (Integer) session.getAttribute("registrado");
 		if(registrado==1) {
 		productoService.deleteById(id);
-		model.addAttribute("listadoProductos",productoService.findAll());
+		Page<Producto> productos= productoService.productosPaginados(0, CANT_PRODUCTOS);
+		
+		int totalPagina= productos.getTotalPages();
+		model.addAttribute("totalPagina", totalPagina);
+		model.addAttribute("listadoProductos",productos);
 		model.addAttribute("listadoCategorias",categoriaService.findAll());
-		return "producto.jsp";
+		return "redirect:/producto/1";
 		}else {
 			return "index.jsp";
 		}
@@ -99,7 +109,7 @@ public class ProductoController {
 		Integer registrado = (Integer) session.getAttribute("registrado");
 		if(registrado==1) {
 		productoService.save(prod);
-		return "redirect:/producto";
+		return "redirect:/producto/1";
 		}else {
 			return "login.jsp";
 		}

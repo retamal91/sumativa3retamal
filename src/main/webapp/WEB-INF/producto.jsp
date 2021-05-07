@@ -31,7 +31,7 @@
         <a class="nav-link" href="/categoria">Administrar Categorias</a>
       </li>
             <li class="nav-item">
-        <a class="nav-link" href="/producto">Administrar Productos</a>
+        <a class="nav-link" href="/producto/1">Administrar Productos</a>
       </li>
             <li class="nav-item">
         <a class="nav-link" href="/producto/busqueda">Buscar Productos</a>
@@ -39,7 +39,12 @@
                   <li class="nav-item">
         <a class="nav-link" href="/carrito">Ver Carrito</a>
       </li>
-
+                  <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+       </li class="align-item-right">
+                  <li class="nav-item">
+        <a class="nav-link" href="/registro">Registro</a>
 	
     </ul>
 	</div>
@@ -89,7 +94,16 @@
   </thead>
   <tbody>
 
+
+  <ul class="pagination">
+  		<c:forEach begin="1" end="${totalPagina}" var="index">
+    <li class="page-item"><a class="page-link" href="/producto/${index}">${index}</a></li>		
+		</c:forEach>
+  </ul>
+
   <c:forEach var = "producto" items="${listadoProductos.content}"> 
+  
+  
     <tr>
 		<td>${producto.id}</td>
 		<td>${producto.nombre}</td>

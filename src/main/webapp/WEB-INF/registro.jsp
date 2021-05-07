@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-    
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +30,7 @@
         <a class="nav-link" href="/categoria">Administrar Categorias</a>
       </li>
             <li class="nav-item">
-        <a class="nav-link" href="/producto">Administrar Productos</a>
+        <a class="nav-link" href="/producto/1">Administrar Productos</a>
       </li>
             <li class="nav-item">
         <a class="nav-link" href="/producto/busqueda">Buscar Productos</a>
@@ -38,7 +38,12 @@
                   <li class="nav-item">
         <a class="nav-link" href="/carrito">Ver Carrito</a>
       </li>
-
+                  <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+       </li class="align-item-right">
+                  <li class="nav-item">
+        <a class="nav-link" href="/registro">Registro</a>
 	
     </ul>
 	</div>
